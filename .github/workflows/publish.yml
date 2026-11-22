@@ -1,7 +1,7 @@
 name: Publish
 
 # Publishing a GitHub release (tag "v<version>", e.g. v0.0.1) uploads to PyPI.
-# Running the workflow manually uploads to TestPyPI instead, as a dry run.
+# Running the workflow manually only builds and checks the distributions.
 on:
   release:
     types: [published]
@@ -42,25 +42,6 @@ jobs:
           name: dist
           path: dist/
 
-  publish-testpypi:
-    name: Publish to TestPyPI
-    if: github.event_name == 'workflow_dispatch'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/dicer
-    permissions:
-      id-token: write  # trusted publishing
-    steps:
-      - uses: actions/download-artifact@v7
-        with:
-          name: dist
-          path: dist/
-      - uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-
   publish-pypi:
     name: Publish to PyPI
     if: github.event_name == 'release'
@@ -68,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/dicer
+      url: https://pypi.org/p/dicerpy
     permissions:
       id-token: write  # trusted publishing
     steps:

@@ -99,8 +99,10 @@ In this example:
 ## Installation
 
 ```bash
-pip install dicer
+pip install dicerpy
 ```
+
+The package is published as `dicerpy` but imported as `dicer`.
 
 To install the latest development version instead:
 
