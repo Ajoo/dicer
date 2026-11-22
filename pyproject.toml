@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dicer"
+dynamic = ["version"]
+description = "Preprocessing with tracked column domains and pushforward/pullback of probability distributions through transformations"
+readme = "README.md"
+authors = [
+    {name = "João Bravo", email = "ajoo@outlook.pt"},
+]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+]
+keywords = [
+    "preprocessing",
+    "feature engineering",
+    "discretization",
+    "probability distributions",
+    "pushforward",
+    "pullback",
+    "pandas",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+examples = ["scikit-learn"]
+
+[project.urls]
+Homepage = "https://github.com/Ajoo/dicer"
+Repository = "https://github.com/Ajoo/dicer"
+Issues = "https://github.com/Ajoo/dicer/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "dicer.__version__"}
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
