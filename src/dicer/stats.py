@@ -437,6 +437,7 @@ def _take_over_last(a, i):
 def _sample_categorical(p, size=None, random_state=None):
     prng = np.random.default_rng(random_state)
     
+    size = () if size is None else size
     shape = np.broadcast_shapes(p.shape[:-1], size)
     u = prng.uniform(size=shape)[..., None]
     P = np.cumsum(p, -1)

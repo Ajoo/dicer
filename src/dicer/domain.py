@@ -36,6 +36,10 @@ class Column:
     def from_dtype(dtype: np.dtype):
         if isinstance(dtype, pd.CategoricalDtype):
             return PandasCategoricalColumn.from_dtype(dtype)
+        elif isinstance(dtype, pd.StringDtype):
+            # pandas >= 3 stores text as a StringDtype by default; NumPy
+            # cannot interpret it, so treat it like an object column.
+            return GenericColumn.from_dtype(dtype)
         elif np.issubdtype(dtype, np.integer):
             return IntegerColumn.from_dtype(dtype)
         elif np.issubdtype(dtype, np.floating):
